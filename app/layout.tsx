@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: "Learn algorithms and data structures for competitive programming",
   generator: "v0.app",
   icons: {
-    icon: "/icon.svg",
+    icon: "/code-icon.svg",
     apple: "/apple-icon.png",
   },
 }
