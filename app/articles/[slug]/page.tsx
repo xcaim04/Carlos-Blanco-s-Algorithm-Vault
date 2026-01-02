@@ -99,33 +99,52 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </Link>
         </Button>
 
-        <article className="bg-card/50 backdrop-blur rounded-2xl border shadow-xl p-8 md:p-12">
-          <header className="mb-10">
-            <Badge className="mb-4 shadow-sm">{article.category}</Badge>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-tight text-balance">
+        <article className="bg-card/50 backdrop-blur rounded-2xl border shadow-xl p-8 md:p-12 lg:p-16">
+          <header className="mb-12">
+            <Badge className="mb-6 shadow-sm text-sm px-3 py-1">{article.category}</Badge>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8 leading-tight text-balance">
               {article.title}
             </h1>
-            <p className="text-xl text-muted-foreground mb-8 leading-relaxed text-pretty">{article.description}</p>
+            <p className="text-xl md:text-2xl text-muted-foreground mb-10 leading-relaxed text-pretty max-w-4xl">
+              {article.description}
+            </p>
 
-            <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <User className="h-4 w-4" />
-                <span className="font-medium">{article.author}</span>
+            <div className="flex flex-wrap items-center gap-8 text-sm text-muted-foreground bg-muted/30 rounded-xl p-6 border">
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-full bg-primary/10">
+                  <User className="h-4 w-4 text-primary" />
+                </div>
+                <div>
+                  <p className="font-medium text-foreground">{article.author}</p>
+                  <p className="text-xs">Author</p>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4" />
-                <span>{new Date(article.date).toLocaleDateString()}</span>
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-full bg-primary/10">
+                  <Calendar className="h-4 w-4 text-primary" />
+                </div>
+                <div>
+                  <p className="font-medium text-foreground">{new Date(article.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                  <p className="text-xs">Published</p>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <Clock className="h-4 w-4" />
-                <span>{article.readTime}</span>
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-full bg-primary/10">
+                  <Clock className="h-4 w-4 text-primary" />
+                </div>
+                <div>
+                  <p className="font-medium text-foreground">{article.readTime}</p>
+                  <p className="text-xs">Read time</p>
+                </div>
               </div>
             </div>
           </header>
 
-          <Separator className="mb-10" />
+          <Separator className="mb-12" />
 
-          <MarkdownContent content={htmlContent} />
+          <div className="article-content">
+            <MarkdownContent content={htmlContent} />
+          </div>
         </article>
 
         <Separator className="my-16" />
